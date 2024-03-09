@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 namespace OpenAI
 {
@@ -13,11 +14,13 @@ namespace OpenAI
         [SerializeField] private RectTransform sent;
         [SerializeField] private RectTransform received;
 
+        public UnityEvent OnReplyReceived;
+
         private float height;
         private OpenAIApi openai = new OpenAIApi();
 
         private List<ChatMessage> messages = new List<ChatMessage>();
-        private string prompt = "Act as a random stranger in a chat room and reply to the questions. Don't break character. Don't ever mention that you are an AI model.";
+        private string prompt = "Act as doctor who has come to diagnose the patient. Only give answers in Hindi. Don't break character. Don't ever mention that you are an AI model.";
 
         private void Start()
         {
@@ -64,6 +67,11 @@ namespace OpenAI
 
             if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
             {
+                OnReplyReceived.Invoke();
+                
+
+
+
                 var message = completionResponse.Choices[0].Message;
                 message.Content = message.Content.Trim();
                 
