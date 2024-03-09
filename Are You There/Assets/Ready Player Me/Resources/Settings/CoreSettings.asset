@@ -15,4 +15,4 @@ MonoBehaviour:
   Subdomain: test-yi8cc1
   AppId: 65eb293e594492e275f7eed0
   EnableLogging: 0
-  EnableAnalytics: 0
+  EnableAnalytics: 1
